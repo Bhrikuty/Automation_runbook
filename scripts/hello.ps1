@@ -2,7 +2,7 @@ $strString = "Hello World"
 write-host $strString
 
 param (
-    [string]$mysub
+    [string]$sub
   
 )
 # Create the application
@@ -16,4 +16,4 @@ $SPID = New-AzureRmADServicePrincipal -ApplicationID $AID
 $SID = $SPID.Id
 # Assign the Role to Service Principal:
 
-New-AzureRmRoleAssignment -Scope /subscriptions/$mysub -ObjectId $SID -RoleDefinitionId 8e3af657-a8ff-443c-a75c-2fe8c4bcb635
+New-AzureRmRoleAssignment -Scope /subscriptions/$sub -ObjectId $SID -RoleDefinitionId 8e3af657-a8ff-443c-a75c-2fe8c4bcb635

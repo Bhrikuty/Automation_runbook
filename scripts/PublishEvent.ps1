@@ -1,10 +1,10 @@
 #code for sending custom data to subscribed endpoint. Need to embed this in azure function and also need to write the handler part in the application
 
-$endpoint = (Get-AzEventGridTopic -ResourceGroupName "testingAzureOnboarding" -Name "MontyCloud-OnBoarding-Topic").Endpoint
-$keys = Get-AzEventGridTopicKey -ResourceGroupName "testingAzureOnboarding" -Name "MontyCloud-OnBoarding-Topic"
+$endpoint = "https://montycloud-onboarding-topic.eastus2-1.eventgrid.azure.net/api/events"
+$keys = "Qcb7/S+Z8xbH3CdeNLHToaESYKzoGzDBkTPkep5qgOw="
 
-$subID =(Get-AzureRmContext).Subscription.Id
-$directoryID = (Get-AzureRmContext).Subscription.TenantId
+#$subID =(Get-AzureRmContext).Subscription.Id
+#$directoryID = (Get-AzureRmContext).Subscription.TenantId
 $eventID = Get-Random 99999
 
 #Date format should be SortableDateTimePattern (ISO 8601)
@@ -25,4 +25,4 @@ $htbody = @{
 #Use ConvertTo-Json to convert event body from Hashtable to JSON Object
 #Append square brackets to the converted JSON payload since they are expected in the event's JSON payload syntax
 $body = "["+(ConvertTo-Json $htbody)+"]"
-Invoke-WebRequest -Uri $endpoint -Method POST -Body $body -Headers @{"aeg-sas-key" = $keys.Key1}
+Invoke-WebRequest -Uri $endpoint -Method POST -Body $body -Headers @{"aeg-sas-key" = $keys}

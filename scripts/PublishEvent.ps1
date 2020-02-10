@@ -1,7 +1,13 @@
 #code for sending custom data to subscribed endpoint. Need to embed this in azure function and also need to write the handler part in the application
 
-$endpoint = "https://montycloud-onboarding-topic.eastus2-1.eventgrid.azure.net/api/events"
-$keys = "Qcb7/S+Z8xbH3CdeNLHToaESYKzoGzDBkTPkep5qgOw="
+
+param (
+    [string]$topicEndpoint,
+    [string]$topicKey
+  
+)
+$endpoint = $topicEndpoint
+$keys = $topicKey
 
 #$subID =(Get-AzureRmContext).Subscription.Id
 #$directoryID = (Get-AzureRmContext).Subscription.TenantId
